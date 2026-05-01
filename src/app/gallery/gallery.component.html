@@ -1,0 +1,65 @@
+<section class="gallery-page">
+
+  <header class="gallery-header">
+    <h1>Galería de Fotos</h1>
+    <div class="total-likes">
+      <span class="heart-icon">❤</span>
+      <span>{{ totalLikes }} likes en total</span>
+    </div>
+  </header>
+
+  <!-- Add photo form -->
+  <form class="add-form" (ngSubmit)="addPhoto()">
+    <h2>Agregar nueva foto</h2>
+    <div class="form-row">
+      <div class="field">
+        <label for="photoUrl">URL de la imagen</label>
+        <input
+          id="photoUrl"
+          type="text"
+          placeholder="https://ejemplo.com/foto.jpg"
+          [(ngModel)]="newUrl"
+          name="photoUrl"
+        />
+        <span class="error" *ngIf="urlError">Ingresa una URL válida.</span>
+      </div>
+      <div class="field">
+        <label for="photoTitle">Título</label>
+        <input
+          id="photoTitle"
+          type="text"
+          placeholder="Nombre de la foto"
+          [(ngModel)]="newTitle"
+          name="photoTitle"
+        />
+      </div>
+      <button type="submit" class="btn-add" [disabled]="!newUrl || !newTitle">
+        + Agregar
+      </button>
+    </div>
+  </form>
+
+  <!-- Empty state -->
+  <p class="empty" *ngIf="photos.length === 0">
+    No hay fotos aún. ¡Agrega la primera!
+  </p>
+
+  <!-- Photo grid -->
+  <div class="grid" *ngIf="photos.length > 0">
+    <div class="card" *ngFor="let photo of photos">
+      <img [src]="photo.url" [alt]="photo.title" loading="lazy" />
+      <div class="card-footer">
+        <span class="card-title">{{ photo.title }}</span>
+        <div class="card-actions">
+          <button class="btn-like" (click)="like(photo.id)">
+            ❤ {{ photo.likes }}
+          </button>
+          <button class="btn-delete" (click)="remove(photo.id)" title="Eliminar">
+            🗑
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</section>

@@ -1,0 +1,17 @@
+
+
+<nav>
+  <a routerLink="/page-1" routerLinkActive="active">Page 1</a> |
+  <a routerLink="/page-2" routerLinkActive="active">Page 2</a> |
+  <a routerLink="/page-3" routerLinkActive="active">Page 3</a> |
+  <a routerLink="/page-4" routerLinkActive="active">Page 4</a> |
+  <a routerLink="/galeria" routerLinkActive="active">Galería</a> |
+  <a routerLink="/registro" routerLinkActive="active">Registro</a>
+</nav>
+
+<router-outlet></router-outlet>
+
+<app-tarjeta
+  [nombre]="nombrePresentacion"
+  [edad]="edadPresentacion"
+></app-tarjeta>

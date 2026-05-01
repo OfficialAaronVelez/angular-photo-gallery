@@ -1,0 +1,202 @@
+.gallery-page {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 24px 16px;
+  font-family: sans-serif;
+}
+
+/* Header */
+.gallery-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.gallery-header h1 {
+  margin: 0;
+  font-size: 1.8rem;
+}
+
+.total-likes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #fff0f3;
+  border: 1px solid #ffb3c1;
+  border-radius: 20px;
+  padding: 6px 16px;
+  font-weight: 600;
+  color: #c0392b;
+}
+
+.heart-icon {
+  font-size: 1.1rem;
+}
+
+/* Form */
+.add-form {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  border-radius: 10px;
+  padding: 20px 24px;
+  margin-bottom: 32px;
+}
+
+.add-form h2 {
+  margin: 0 0 16px;
+  font-size: 1.1rem;
+  color: #495057;
+}
+
+.form-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 200px;
+}
+
+.field label {
+  font-size: 0.85rem;
+  color: #6c757d;
+  font-weight: 500;
+}
+
+.field input {
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.field input:focus {
+  border-color: #4361ee;
+}
+
+.error {
+  font-size: 0.78rem;
+  color: #c0392b;
+}
+
+.btn-add {
+  padding: 9px 20px;
+  background: #4361ee;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s;
+}
+
+.btn-add:hover:not(:disabled) {
+  background: #3451d1;
+}
+
+.btn-add:disabled {
+  background: #adb5bd;
+  cursor: not-allowed;
+}
+
+/* Empty state */
+.empty {
+  text-align: center;
+  color: #868e96;
+  font-size: 1rem;
+  padding: 40px 0;
+}
+
+/* Grid */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.14);
+}
+
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-footer {
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 0.95rem;
+  color: #212529;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+  justify-content: space-between;
+}
+
+.btn-like {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 14px;
+  background: #fff0f3;
+  color: #c0392b;
+  border: 1px solid #ffb3c1;
+  border-radius: 20px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btn-like:hover {
+  background: #ffe0e6;
+}
+
+.btn-delete {
+  padding: 5px 10px;
+  background: transparent;
+  border: 1px solid #dee2e6;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.15s, border-color 0.15s;
+}
+
+.btn-delete:hover {
+  background: #ffe3e3;
+  border-color: #f03e3e;
+}

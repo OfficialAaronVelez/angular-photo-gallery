@@ -1,59 +1,62 @@
-# FrontEndAngularProject
+ FrontEnd Angular Project - Formularios Avanzados
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.2.6.
+Live site (GitHub Pages): https://officialaaronvelez.github.io/angular-photo-gallery/
 
-## Development server
+Repository: https://github.com/OfficialAaronVelez/angular-photo-gallery
 
-To start a local development server, run:
 
-```bash
+ Quick start
+
+"""bash
+npm install
 ng serve
-```
+"""
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Open [http://localhost:4200](http://localhost:4200).
 
-## Code scaffolding
+- Build: "ng build"
+- Tests: "ng test"
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+What’s in this project!!
 
-```bash
-ng generate --help
-```
+Routes ("src/app/app.routes.ts")
 
-## Building
+Path        | Description                                      
+ "/"        | Redirects to "/page-1"                          
+"/page-1"   "/page-4" | Simple demo pages ("src/app/pages/…")   
+"/galeria"  | Gallery demo ("src/app/gallery/")                
+"/registro" | Advanced reactive registration form (below) 
 
-To build the project run:
 
-```bash
-ng build
-```
+Registration form — “Formularios avanzados” ("/registro")
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Bank-style user registration with real-time validation, friendly errors, and a simulated API submit.
 
-## Running unit tests
+Code:
 
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+- "src/app/registro/registro.component.ts" — "FormGroup", controls, "FormArray" for optional phone rows, submit + reset after success ("setTimeout" simulates the API).
+- "src/app/registro/registro.component.html" — fields, messages using touched/dirty via "interacted()", submit disabled when "invalid", "pending", or submitting.
+- "src/app/registro/registro.component.css" — layout for the form.
+- "src/app/registro/registro-validators.ts" — sync validators (password match on the group, minimum age, optional phone format) and async email check (simulated “email already registered” with a short delay).
 
-```bash
-ng test
-```
+Fields: nombre, email, contraseña, confirmación, edad, términos, plus optional teléfonos (FormArray with add/remove).
 
-## Running end-to-end tests
+Concepts shown: ReactiveForms ("FormGroup" / "FormControl" / "FormArray"), custom validators, async validator on email ("updateOn: 'blur'"), UX guard on submit, reset after successful simulated POST.
 
-For end-to-end (e2e) testing, run:
+ Presentation card ("TarjetaComponent")
 
-```bash
-ng e2e
-```
+Reusable card with "@Input" for name and age, and a local “likes” counter on click.
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+- "src/app/tarjeta/tarjeta.component."
+- Used from "app.component.html" as "<app-tarjeta [nombre]="…" [edad]="…">".
 
-## Additional Resources
+Gallery
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+- "src/app/gallery/" — gallery feature linked from the nav as Galería.
+
+Prerequisites
+
+- Node.js (LTS recommended; odd major versions may show CLI warnings)
+- Angular CLI (global optional): "npm install -g @angular/cli"

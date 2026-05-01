@@ -1,0 +1,21 @@
+.tarjeta {
+  max-width: 320px;
+  border: 1px solid #d1d5db;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  background: #f9fafb;
+}
+
+h2 {
+  margin-top: 0;
+}
+
+button {
+  border: none;
+  border-radius: 8px;
+  padding: 0.5rem 0.75rem;
+  background: #2563eb;
+  color: #fff;
+  cursor: pointer;
+}
