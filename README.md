@@ -1,62 +1,73 @@
- FrontEnd Angular Project - Formularios Avanzados
+# FrontEnd Angular Project — Galería y formularios avanzados
 
-Live site (GitHub Pages): https://officialaaronvelez.github.io/angular-photo-gallery/
+Angular app for browsing photos and for the advanced reactive registration demo. To browse photos, open **Galería** in the nav.
 
-Repository: https://github.com/OfficialAaronVelez/angular-photo-gallery
+**Live site (GitHub Pages):** https://officialaaronvelez.github.io/angular-photo-gallery/
 
+**Repository:** https://github.com/OfficialAaronVelez/angular-photo-gallery
 
- Quick start
+## Local development
 
-"""bash
+```bash
 npm install
-ng serve
-"""
+npm start
+```
 
-Open [http://localhost:4200](http://localhost:4200).
+Then open http://localhost:4200/ (`npm start` runs `ng serve`).
 
-- Build: "ng build"
-- Tests: "ng test"
+## Build
 
+```bash
+npm run build
+```
 
+## Tests
 
-What’s in this project!!
+```bash
+npm test
+```
 
-Routes ("src/app/app.routes.ts")
+## Deploy (GitHub Pages)
 
-Path        | Description                                      
- "/"        | Redirects to "/page-1"                          
-"/page-1"   "/page-4" | Simple demo pages ("src/app/pages/…")   
-"/galeria"  | Gallery demo ("src/app/gallery/")                
-"/registro" | Advanced reactive registration form (below) 
+After configuring the `angular-cli-ghpages` setup for your repo base href:
 
+```bash
+ng deploy
+```
 
-Registration form — “Formularios avanzados” ("/registro")
+## What’s in this project
 
-Bank-style user registration with real-time validation, friendly errors, and a simulated API submit.
+### Routes (`src/app/app.routes.ts`)
 
-Code:
+| Path | Description |
+|------|-------------|
+| `/` | Redirects to `/page-1` |
+| `/page-1` … `/page-4` | Simple demo pages (`src/app/pages/…`) |
+| `/galeria` | Gallery (`src/app/gallery/`) |
+| `/registro` | Advanced registration form (below) |
 
-- "src/app/registro/registro.component.ts" — "FormGroup", controls, "FormArray" for optional phone rows, submit + reset after success ("setTimeout" simulates the API).
-- "src/app/registro/registro.component.html" — fields, messages using touched/dirty via "interacted()", submit disabled when "invalid", "pending", or submitting.
-- "src/app/registro/registro.component.css" — layout for the form.
-- "src/app/registro/registro-validators.ts" — sync validators (password match on the group, minimum age, optional phone format) and async email check (simulated “email already registered” with a short delay).
+### Registration — “Formularios avanzados” (`/registro`)
 
-Fields: nombre, email, contraseña, confirmación, edad, términos, plus optional teléfonos (FormArray with add/remove).
+Bank-style registration with validation, clear errors, and a simulated API submit.
 
-Concepts shown: ReactiveForms ("FormGroup" / "FormControl" / "FormArray"), custom validators, async validator on email ("updateOn: 'blur'"), UX guard on submit, reset after successful simulated POST.
+- `src/app/registro/registro.component.ts` — `FormGroup`, controls, `FormArray` for optional phones, submit + reset after success (`setTimeout` simulates the API).
+- `src/app/registro/registro.component.html` — fields and messages using touched/dirty via `interacted()`, submit disabled when invalid, pending, or submitting.
+- `src/app/registro/registro.component.css` — layout.
+- `src/app/registro/registro-validators.ts` — sync validators (password match, minimum age, optional phone format) and async email check.
 
- Presentation card ("TarjetaComponent")
+**Fields:** nombre, email, contraseña, confirmación, edad, términos, plus optional teléfonos (`FormArray` with add/remove).
 
-Reusable card with "@Input" for name and age, and a local “likes” counter on click.
+**Concepts:** ReactiveForms (`FormGroup` / `FormControl` / `FormArray`), custom validators, async validator on email (`updateOn: 'blur'`), UX guard on submit, reset after successful simulated POST.
 
-- "src/app/tarjeta/tarjeta.component."
-- Used from "app.component.html" as "<app-tarjeta [nombre]="…" [edad]="…">".
+### Presentation card (`TarjetaComponent`)
 
-Gallery
+Reusable card with `@Input` for name and age and a local likes counter. See `src/app/tarjeta/` and usage in `app.component.html` as `<app-tarjeta …>`.
 
-- "src/app/gallery/" — gallery feature linked from the nav as Galería.
+### Gallery
 
-Prerequisites
+`src/app/gallery/` — linked from the nav as **Galería**.
+
+## Prerequisites
 
 - Node.js (LTS recommended; odd major versions may show CLI warnings)
-- Angular CLI (global optional): "npm install -g @angular/cli"
+- Angular CLI (optional global): `npm install -g @angular/cli`
