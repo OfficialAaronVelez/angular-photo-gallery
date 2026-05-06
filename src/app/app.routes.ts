@@ -5,6 +5,7 @@ import { Page3Component } from './pages/page3/page3.component';
 import { Page4Component } from './pages/page4/page4.component';
 import { GalleryComponent } from './gallery/gallery.component';
 import { RegistroComponent } from './registro/registro.component';
+import { ClimaComponent } from './clima/clima.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'page-1', pathMatch: 'full' },
@@ -14,4 +15,5 @@ export const routes: Routes = [
   { path: 'page-4', component: Page4Component },
   { path: 'galeria', component: GalleryComponent },
   { path: 'registro', component: RegistroComponent },
+  { path: 'clima', component: ClimaComponent },
 ];

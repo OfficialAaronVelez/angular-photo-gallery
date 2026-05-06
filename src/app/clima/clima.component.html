@@ -1,0 +1,114 @@
+<div class="clima-page">
+  <header class="clima-hero">
+    <p class="clima-eyebrow">OpenWeather · métrico</p>
+    <h1 class="clima-title">Clima</h1>
+    <p class="clima-subtitle">
+      Busca una ciudad y pulsa <strong>Buscar</strong>. Si hay varias coincidencias, elige la correcta.
+    </p>
+  </header>
+
+  <form (ngSubmit)="buscar()" class="search-bar" novalidate>
+    <span class="search-bar__icon" aria-hidden="true">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <circle cx="11" cy="11" r="7" />
+        <path d="M21 21l-4.35-4.35" stroke-linecap="round" />
+      </svg>
+    </span>
+    <input
+      type="text"
+      [(ngModel)]="query"
+      name="q"
+      placeholder="Ciudad o región…"
+      class="search-bar__input"
+      autocomplete="off"
+      [attr.aria-busy]="loading"
+    />
+    <button type="submit" class="search-bar__btn" [disabled]="loading">
+      <span *ngIf="!loading">Buscar</span>
+      <span *ngIf="loading" class="search-bar__btn-loading">…</span>
+    </button>
+  </form>
+
+  <section *ngIf="candidates.length > 1" class="panel candidates-panel">
+    <h2 class="panel__title">Coincidencias</h2>
+    <p class="panel__hint">Toca la ciudad que quieras consultar.</p>
+    <div class="chip-row">
+      <button
+        type="button"
+        *ngFor="let c of candidates"
+        class="chip"
+        (click)="elegirCiudad(c)"
+      >
+        <span class="chip__name">{{ c.name }}</span>
+        <span class="chip__meta">
+          <ng-container *ngIf="c.state">{{ c.state }} · </ng-container>{{ c.country }}
+        </span>
+      </button>
+    </div>
+  </section>
+
+  <div *ngIf="loading" class="loading-state" role="status">
+    <div class="spinner" aria-hidden="true"></div>
+    <p class="loading-state__text">Obteniendo datos del clima…</p>
+  </div>
+
+  <div *ngIf="error && !loading" class="alert alert--error" role="alert">
+    <span class="alert__icon" aria-hidden="true">!</span>
+    <p class="alert__text">{{ error }}</p>
+  </div>
+
+  <article *ngIf="currentWeather && !loading" class="weather-hero">
+    <div class="weather-hero__top">
+      <div class="weather-hero__place">
+        <h2 class="weather-hero__city">{{ currentWeather.name }}, {{ currentWeather.country }}</h2>
+        <time class="weather-hero__date">{{ currentWeather.dt * 1000 | date : 'fullDate' }}</time>
+      </div>
+      <div class="weather-hero__visual">
+        <img
+          [src]="iconUrl(currentWeather.icon)"
+          [alt]="currentWeather.description"
+          class="weather-hero__icon"
+        />
+        <span class="weather-hero__temp">{{ currentWeather.temp | number : '1.0-0' }}°</span>
+      </div>
+    </div>
+    <p class="weather-hero__desc">{{ currentWeather.description | titlecase }}</p>
+    <ul class="weather-stats">
+      <li class="weather-stats__item">
+        <span class="weather-stats__label">Sensación</span>
+        <span class="weather-stats__value">{{ currentWeather.feelsLike | number : '1.0-0' }}°C</span>
+      </li>
+      <li class="weather-stats__item">
+        <span class="weather-stats__label">Humedad</span>
+        <span class="weather-stats__value">{{ currentWeather.humidity }}%</span>
+      </li>
+      <li class="weather-stats__item">
+        <span class="weather-stats__label">Viento</span>
+        <span class="weather-stats__value">{{ currentWeather.windSpeed }} m/s</span>
+      </li>
+    </ul>
+  </article>
+
+  <section *ngIf="forecast.length > 0 && !loading" class="forecast-block">
+    <h3 class="forecast-block__title">Próximos días</h3>
+    <div class="forecast-grid">
+      <article *ngFor="let day of forecast" class="forecast-tile">
+        <p class="forecast-tile__day">{{ day.date | date : 'EEE' | titlecase }}</p>
+        <p class="forecast-tile__date">{{ day.date | date : 'd MMM' }}</p>
+        <img [src]="iconUrl(day.icon)" [alt]="day.description" class="forecast-tile__icon" />
+        <p class="forecast-tile__desc">{{ day.description | titlecase }}</p>
+        <div class="forecast-tile__temps">
+          <span class="forecast-tile__hi">{{ day.tempMax | number : '1.0-0' }}°</span>
+          <span class="forecast-tile__lo">{{ day.tempMin | number : '1.0-0' }}°</span>
+        </div>
+        <p class="forecast-tile__hum">Humedad {{ day.humidity }}%</p>
+      </article>
+    </div>
+  </section>
+
+  <div *ngIf="!loading && !currentWeather && !error && candidates.length === 0" class="empty-state">
+    <div class="empty-state__art" aria-hidden="true">☁️</div>
+    <h3 class="empty-state__title">Empieza con una búsqueda</h3>
+    <p class="empty-state__text">Escribe el nombre de una ciudad y obtén temperatura, humedad y un vistazo a la semana.</p>
+  </div>
+</div>
